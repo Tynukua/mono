@@ -33,6 +33,7 @@ class MonoCard:
 
 class ClientInfo:
     def __init__(self, json):
+        self.accounts = []  #This string for pylint    
         self.__dict__ = snakeize_dict( json)
     
     def as_dict(self):
