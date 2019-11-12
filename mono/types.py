@@ -13,15 +13,15 @@ def snakeize_dict(dict_):
         key = snakeize_s(key)
         answer[key] = dict_[key]
     return answer
-    
+
 class MonoCard:
     def __init__(self, json):
         self.__dict__ = snakeize_dict( json)
 
 class ClientInfo:
     def __init__(self, json):
-        self.__dict__ = json
+        self.__dict__ = snakeize_dict( json)
 
 class StatementItem:
     def __init__(self, json):
-        self.__dict__ = json
+        self.__dict__ = snakeize_dict( json)
