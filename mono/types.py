@@ -23,8 +23,10 @@ class MonoCard:
         self.__user = user
 
     def as_dict(self):
-        return self.__dict__.copy()
-
+        answer = self.__dict__.copy()
+        del answer['_MonoCard__user']
+        return answer
+        
     def get_statement(self, from_time, to=''):
         url = f'/personal/statement/{self.id}/{from_time}/{to}'
         return [StatementItem(i) for i in self.__user._get(url)]
