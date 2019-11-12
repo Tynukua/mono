@@ -32,6 +32,7 @@ class ClientInfo:
                 dict_[key] = dict_[key].as_json()
             except Exception:
                 pass
+        return dict_
 
 class StatementItem:
     def __init__(self, json):
