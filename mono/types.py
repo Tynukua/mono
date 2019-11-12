@@ -1,3 +1,5 @@
+from requests import get
+
 def snakeize_s(string):
     answer = ''
     for char in str(string):
@@ -15,11 +17,16 @@ def snakeize_dict(dict_):
     return answer
 
 class MonoCard:
-    def __init__(self, json):
+    def __init__(self, json, user):
         self.__dict__ = snakeize_dict( json)
-    
+        self.id = self.__dict__['id'] #This string for pylint
+        self.__user = user
     def as_dict(self):
         return self.__dict__.copy()
+
+    def get_statement(self, from_time, to=''):
+        url = f'/personal/statement/{self.id}/{from_time}/{to}'
+        return [StatementItem(i) for i in self.__user._get(url)]
 
 class ClientInfo:
     def __init__(self, json):
