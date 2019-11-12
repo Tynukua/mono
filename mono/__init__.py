@@ -1,5 +1,5 @@
 from requests import get
-
+from .types import *
 HEADERS = {
     'Request Content-Types': 'application/json',
     'Response Content-Types': 'application/json', 
@@ -16,5 +16,7 @@ class OpenMono:
     
     def client_info(self):
         response = get(BASE_URL+'/personal/client-info', 
-            headers = {**HEADERS, **{'X-Token': self._TOKEN} })
-        return response.json()
+            headers = {**HEADERS, **{'X-Token': self._TOKEN} }).json() 
+        response['accounts'] = [ MonoCard(i) for i in response['accounts'] ] 
+        return ClientInfo(response)
+    
