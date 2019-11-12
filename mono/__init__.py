@@ -1,10 +1,10 @@
 from requests import get
-from .types import *
+from .types import ( ClientInfo, StatementItem, MonoCard)
     
 BASE_URL = 'https://api.monobank.ua'
 
 class OpenMono:
-    HEADERS = {
+    __HEADERS = {
         'Request Content-Types': 'application/json',
         'Response Content-Types': 'application/json', 
         'Schemes': 'https', 
@@ -13,15 +13,18 @@ class OpenMono:
     def __init__(self, token, version = None):
         self._TOKEN = token
         if version:
-            OpenMono.HEADERS['Version'] = str(version)
+            OpenMono.__HEADERS['Version'] = str(version)
 
     @property
     def __headers(self):
-        return {**OpenMono.HEADERS, **{'X-Token': self._TOKEN}}
+        return {**OpenMono.__HEADERS, **{'X-Token': self._TOKEN}}
+
+    def _get(self, url):
+        return get(BASE_URL+url, headers=self.__headers).json() 
 
     def client_info(self):
-        response = get(BASE_URL+'/personal/client-info', 
-            headers=self.__headers).json() 
-        response['accounts'] = [ MonoCard(i) for i in response['accounts'] ] 
+        response = self._get('/personal/client-info')
+        response['accounts'] = [ MonoCard(i, self) for i in response['accounts'] ]
+
         return ClientInfo(response)
 
