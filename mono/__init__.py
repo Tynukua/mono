@@ -11,8 +11,8 @@ BASE_URL = 'https://api.monobank.ua'
 class OpenMono:
     def __init__(self, token, version = None):
         self._TOKEN = token
-        #if version:
-            #HEADERS['Version'] = str(version)
+        if version:
+            HEADERS['Version'] = str(version)
     
     def client_info(self):
         response = get(BASE_URL+'/personal/client-info', 
