@@ -21,6 +21,7 @@ class MonoCard:
         self.__dict__ = snakeize_dict( json)
         self.id = self.__dict__['id'] #This string for pylint
         self.__user = user
+
     def as_dict(self):
         return self.__dict__.copy()
 
