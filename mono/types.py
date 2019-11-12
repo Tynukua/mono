@@ -11,7 +11,7 @@ def snakeize_dict(dict_):
     answer = {}
     for key in dict_:
         nkey = snakeize_s(key)
-        answer[key] = dict_[key]
+        answer[nkey] = dict_[key]
     return answer
 
 class MonoCard:
