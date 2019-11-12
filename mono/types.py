@@ -28,10 +28,10 @@ class ClientInfo:
     def as_dict(self):
         dict_ = self.__dict__.copy()
         for key in dict_:
-            try:
-                dict_[key] = dict_[key].as_json()
-            except Exception:
-                pass
+            if isinstance(dict_[key], list):
+                dict_[key] = [i.as_dict() for i in dict_[key]]
+            elif isinstance(dict_[key],dict):
+                    dict_[key] = dict_[key].as_dict()
         return dict_
 
 class StatementItem:
