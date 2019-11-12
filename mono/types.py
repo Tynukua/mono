@@ -10,7 +10,7 @@ def snakeize_s(string):
 def snakeize_dict(dict_):
     answer = {}
     for key in dict_:
-        key = snakeize_s(key)
+        nkey = snakeize_s(key)
         answer[key] = dict_[key]
     return answer
 
