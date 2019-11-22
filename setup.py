@@ -4,7 +4,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name = 'mono',
+    name = 'PyMonoBankAPI',
     version="0.1",
     author="Tynukua",
     author_email = 'tynuk.ua@gmail.com',
@@ -16,7 +16,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     requires_python='>=3.5',
     classifiers=[
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         "Operating System :: OS Independent",] ,
     install_requires=[

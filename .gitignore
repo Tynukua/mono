@@ -3,3 +3,7 @@ main.py
 __pycache__
 
 test.py
+
+PyMonoBankAPI.egg-info
+dist
+build
