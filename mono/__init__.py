@@ -22,7 +22,7 @@ class OpenMono:
     def _get(self, url):
         return get(BASE_URL+url, headers=self.__headers).json() 
 
-    def client_info(self):
+    def get_client_info(self):
         response = self._get('/personal/client-info')
         response['accounts'] = [ MonoCard(i, self) for i in response['accounts'] ]
 
